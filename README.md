@@ -185,8 +185,9 @@ https://engineeringxpert.com/wp-content/uploads/2022/04/26.png
 ```
 NAME: JESU SMARTIA A
 REG NO:212223110016
+```
 main.c
-
+```
 #include "main.h"
 #include <stdbool.h>
 #include "lcd.h"
@@ -419,8 +420,9 @@ void key()
 						HAL_Delay(500);
 
 }
+```
 lcd.h
-
+```
 #ifndef LCD_H_
 #define LCD_H_
 
@@ -511,9 +513,9 @@ void Lcd_define_char(Lcd_HandleTypeDef * lcd, uint8_t code, uint8_t bitmap[]);
 void Lcd_clear(Lcd_HandleTypeDef * lcd);
 
 #endif /* LCD_H_ */
-
+```
 lcd.c
-
+```
 #include "lcd.h"
 const uint8_t ROW_16[] = {0x00, 0x40, 0x10, 0x50};
 const uint8_t ROW_20[] = {0x00, 0x40, 0x14, 0x54};
@@ -679,7 +681,7 @@ void lcd_write(Lcd_HandleTypeDef * lcd, uint8_t data, uint8_t len)
 	HAL_GPIO_WritePin(lcd->en_port, lcd->en_pin, 0);
 }
 
-
+```
 ## Output screen shots of proteus  :
  
  ![376899886-91a5d9c8-f2f8-4503-a4a7-e688adb8bdbf](https://github.com/user-attachments/assets/a0ed0804-6a91-4ee5-9782-c69ced987e64)
