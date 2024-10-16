@@ -179,16 +179,514 @@ https://engineeringxpert.com/wp-content/uploads/2022/04/26.png
 
 ## CIRCUIT DIAGRAM 
  
+![376899965-0f2523b1-f635-44b1-9da5-bbc9da47e059](https://github.com/user-attachments/assets/f2f18983-0692-458a-9ebc-82366dd17d12)
 
 ## STM 32 CUBE PROGRAM :
+```
+NAME: JESU SMARTIA A
+REG NO:212223110016
+main.c
 
+#include "main.h"
+#include <stdbool.h>
+#include "lcd.h"
+
+bool col1,col2,col3,col4;
+void key();
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+
+/* USER CODE BEGIN PV */
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+/* USER CODE BEGIN PFP */
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+  /* USER CODE BEGIN 1 */
+
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  /* USER CODE BEGIN 2 */
+
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+	  key();
+	  HAL_Delay(500);
+    /* USER CODE BEGIN 3 */
+  }
+  /* USER CODE END 3 */
+}
+void key()
+{
+	Lcd_PortType ports[] = { GPIOA, GPIOA, GPIOA, GPIOA };
+	Lcd_PinType pins[] = {GPIO_PIN_3, GPIO_PIN_2, GPIO_PIN_1, GPIO_PIN_0};
+	Lcd_HandleTypeDef lcd;
+	lcd = Lcd_create(ports, pins, GPIOB, GPIO_PIN_0, GPIOB, GPIO_PIN_1, LCD_4_BIT_MODE);
+
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_2,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_3,GPIO_PIN_SET);
+
+	col1 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_4);
+	col2 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_5);
+	col3 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_6);
+	col4 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_7);
+
+ 	if(!col1)
+	{
+		Lcd_cursor(&lcd,0,1);
+		Lcd_string(&lcd, "key7\n");
+		col1=1;
+	}
+	if(!col2)
+		{
+			Lcd_cursor(&lcd,0,1);
+			Lcd_string(&lcd, "key8\n");
+			col2=1;
+		}
+	if(!col3)
+		{
+			Lcd_cursor(&lcd,0,1);
+			Lcd_string(&lcd, "key9\n");
+			col3=1;
+		}
+	if(!col4)
+		{
+			Lcd_cursor(&lcd,0,1);
+			Lcd_string(&lcd, "key/\n");
+			col4=1;
+		}
+
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_2,GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_3,GPIO_PIN_SET);
+		col1 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_4);
+		col2 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_5);
+		col3 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_6);
+		col4 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_7);
+
+		if(!col1)
+		{
+			Lcd_cursor(&lcd,0,1);
+			Lcd_string(&lcd, "key4\n");
+			col1=1;
+		}
+		if(!col2)
+			{
+				Lcd_cursor(&lcd,0,1);
+				Lcd_string(&lcd, "key5\n");
+				col2=1;
+			}
+		if(!col3)
+			{
+				Lcd_cursor(&lcd,0,1);
+				Lcd_string(&lcd, "key6\n");
+				col3=1;
+			}
+		if(!col4)
+			{
+				Lcd_cursor(&lcd,0,1);
+				Lcd_string(&lcd, "key*\n");
+				col4=1;
+			}
+ 		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_SET);
+				HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_SET);
+				HAL_GPIO_WritePin(GPIOC,GPIO_PIN_2,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(GPIOC,GPIO_PIN_3,GPIO_PIN_SET);
+
+				col1 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_4);
+				col2 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_5);
+				col3 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_6);
+				col4 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_7);
+
+				if(!col1)
+				{
+					Lcd_cursor(&lcd,0,1);
+					Lcd_string(&lcd, "key1\n");
+					col1=1;
+				}
+				if(!col2)
+					{
+						Lcd_cursor(&lcd,0,1);
+						Lcd_string(&lcd, "key2\n");
+						col2=1;
+					}
+				if(!col3)
+					{
+						Lcd_cursor(&lcd,0,1);
+						Lcd_string(&lcd, "key3\n");
+						col3=1;
+					}
+				if(!col4)
+					{
+						Lcd_cursor(&lcd,0,1);
+						Lcd_string(&lcd, "key-\n");
+						col4=1;
+					}
+ 				HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_SET);
+						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_SET);
+						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_2,GPIO_PIN_SET);
+						HAL_GPIO_WritePin(GPIOC,GPIO_PIN_3,GPIO_PIN_RESET);
+
+						col1 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_4);
+						col2 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_5);
+						col3 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_6);
+						col4 =HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_7);
+						if(!col1)
+						{
+							Lcd_cursor(&lcd,0,1);
+							Lcd_string(&lcd, "keyON/ac\n");
+							col1=1;
+						}
+						if(!col2)
+							{
+								Lcd_cursor(&lcd,0,1);
+								Lcd_string(&lcd, "key0\n");
+								col2=1;
+							}
+						if(!col3)
+							{
+								Lcd_cursor(&lcd,0,1);
+								Lcd_string(&lcd, "key=\n");
+								col3=1;
+							}
+						if(!col4)
+							{
+								Lcd_cursor(&lcd,0,1);
+								Lcd_string(&lcd, "key+\n");
+								col4=1;
+							}
+						HAL_Delay(500);
+
+}
+lcd.h
+
+#ifndef LCD_H_
+#define LCD_H_
+
+#include "stm32f4xx_hal.h"
+#include "string.h"
+#include "stdio.h"
+#include "main.h"
+
+// #define LCD20xN 		// For 20xN LCDs
+#define LCD16xN			// For 16xN LCDs
+
+// For row start addresses
+extern const uint8_t ROW_16[];
+extern const uint8_t ROW_20[];
+
+/************* Command register *************/
+#define CLEAR_DISPLAY 0x01
+
+#define RETURN_HOME 0x02
+
+#define ENTRY_MODE_SET 0x04
+#define OPT_S	0x01					// Shift entire display to right
+#define OPT_INC 0x02					// Cursor increment
+
+#define DISPLAY_ON_OFF_CONTROL 0x08
+#define OPT_D	0x04					// Turn on display
+#define OPT_C	0x02					// Turn on cursor
+#define OPT_B 	0x01					// Turn on cursor blink
+
+#define CURSOR_DISPLAY_SHIFT 0x10		// Move and shift cursor
+#define OPT_SC 0x08
+#define OPT_RL 0x04
+
+#define FUNCTION_SET 0x20
+#define OPT_DL 0x10						// Set interface data length
+#define OPT_N 0x08						// Set number of display lines
+#define OPT_F 0x04						// Set alternate font
+#define SETCGRAM_ADDR 0x040
+#define SET_DDRAM_ADDR 0x80				// Set DDRAM address
+
+
+/************* Helper macros *************/
+#define DELAY(X) HAL_Delay(X)
+
+
+/************* LCD defines *************/
+#define LCD_NIB 4
+#define LCD_BYTE 8
+#define LCD_DATA_REG 1
+#define LCD_COMMAND_REG 0
+
+
+/************* LCD typedefs *************/
+#define Lcd_PortType GPIO_TypeDef*
+#define Lcd_PinType uint16_t
+
+typedef enum {
+	LCD_4_BIT_MODE,
+	LCD_8_BIT_MODE
+} Lcd_ModeTypeDef;
+
+
+typedef struct {
+	Lcd_PortType * data_port;
+	Lcd_PinType * data_pin;
+
+	Lcd_PortType rs_port;
+	Lcd_PinType rs_pin;
+
+	Lcd_PortType en_port;
+	Lcd_PinType en_pin;
+
+	Lcd_ModeTypeDef mode;
+
+} Lcd_HandleTypeDef;
+
+
+/************* Public functions *************/
+void Lcd_init(Lcd_HandleTypeDef * lcd);
+void Lcd_int(Lcd_HandleTypeDef * lcd, int number);
+void Lcd_string(Lcd_HandleTypeDef * lcd, char * string);
+void Lcd_cursor(Lcd_HandleTypeDef * lcd, uint8_t row, uint8_t col);
+Lcd_HandleTypeDef Lcd_create(
+		Lcd_PortType port[], Lcd_PinType pin[],
+		Lcd_PortType rs_port, Lcd_PinType rs_pin,
+		Lcd_PortType en_port, Lcd_PinType en_pin, Lcd_ModeTypeDef mode);
+void Lcd_define_char(Lcd_HandleTypeDef * lcd, uint8_t code, uint8_t bitmap[]);
+void Lcd_clear(Lcd_HandleTypeDef * lcd);
+
+#endif /* LCD_H_ */
+
+lcd.c
+
+#include "lcd.h"
+const uint8_t ROW_16[] = {0x00, 0x40, 0x10, 0x50};
+const uint8_t ROW_20[] = {0x00, 0x40, 0x14, 0x54};
+/************* Static declarations *************/
+
+static void lcd_write_data(Lcd_HandleTypeDef * lcd, uint8_t data);
+static void lcd_write_command(Lcd_HandleTypeDef * lcd, uint8_t command);
+static void lcd_write(Lcd_HandleTypeDef * lcd, uint8_t data, uint8_t len);
+
+
+/************* Function definitions *************/
+
+/**
+ * Create new Lcd_HandleTypeDef and initialize the Lcd
+ */
+Lcd_HandleTypeDef Lcd_create(
+		Lcd_PortType port[], Lcd_PinType pin[],
+		Lcd_PortType rs_port, Lcd_PinType rs_pin,
+		Lcd_PortType en_port, Lcd_PinType en_pin, Lcd_ModeTypeDef mode)
+{
+	Lcd_HandleTypeDef lcd;
+
+	lcd.mode = mode;
+
+	lcd.en_pin = en_pin;
+	lcd.en_port = en_port;
+
+	lcd.rs_pin = rs_pin;
+	lcd.rs_port = rs_port;
+
+	lcd.data_pin = pin;
+	lcd.data_port = port;
+
+	Lcd_init(&lcd);
+
+	return lcd;
+}
+
+/**
+ * Initialize 16x2-lcd without cursor
+ */
+void Lcd_init(Lcd_HandleTypeDef * lcd)
+{
+	if(lcd->mode == LCD_4_BIT_MODE)
+	{
+			lcd_write_command(lcd, 0x33);
+			lcd_write_command(lcd, 0x32);
+			lcd_write_command(lcd, FUNCTION_SET | OPT_N);				// 4-bit mode
+	}
+	else
+		lcd_write_command(lcd, FUNCTION_SET | OPT_DL | OPT_N);
+
+
+	lcd_write_command(lcd, CLEAR_DISPLAY);						// Clear screen
+	lcd_write_command(lcd, DISPLAY_ON_OFF_CONTROL | OPT_D);		// Lcd-on, cursor-off, no-blink
+	lcd_write_command(lcd, ENTRY_MODE_SET | OPT_INC);			// Increment cursor
+}
+
+/**
+ * Write a number on the current position
+ */
+void Lcd_int(Lcd_HandleTypeDef * lcd, int number)
+{
+	char buffer[11];
+	sprintf(buffer, "%d", number);
+
+	Lcd_string(lcd, buffer);
+}
+
+/**
+ * Write a string on the current position
+ */
+void Lcd_string(Lcd_HandleTypeDef * lcd, char * string)
+{
+	for(uint8_t i = 0; i < strlen(string); i++)
+	{
+		lcd_write_data(lcd, string[i]);
+	}
+}
+
+/**
+ * Set the cursor position
+ */
+void Lcd_cursor(Lcd_HandleTypeDef * lcd, uint8_t row, uint8_t col)
+{
+	#ifdef LCD20xN
+	lcd_write_command(lcd, SET_DDRAM_ADDR + ROW_20[row] + col);
+	#endif
+
+	#ifdef LCD16xN
+	lcd_write_command(lcd, SET_DDRAM_ADDR + ROW_16[row] + col);
+	#endif
+}
+
+/**
+ * Clear the screen
+ */
+void Lcd_clear(Lcd_HandleTypeDef * lcd) {
+	lcd_write_command(lcd, CLEAR_DISPLAY);
+}
+
+void Lcd_define_char(Lcd_HandleTypeDef * lcd, uint8_t code, uint8_t bitmap[]){
+	lcd_write_command(lcd, SETCGRAM_ADDR + (code << 3));
+	for(uint8_t i=0;i<8;++i){
+		lcd_write_data(lcd, bitmap[i]);
+	}
+
+}
+
+
+/************* Static function definition *************/
+
+/**
+ * Write a byte to the command register
+ */
+void lcd_write_command(Lcd_HandleTypeDef * lcd, uint8_t command)
+{
+	HAL_GPIO_WritePin(lcd->rs_port, lcd->rs_pin, LCD_COMMAND_REG);		// Write to command register
+
+	if(lcd->mode == LCD_4_BIT_MODE)
+	{
+		lcd_write(lcd, (command >> 4), LCD_NIB);
+		lcd_write(lcd, command & 0x0F, LCD_NIB);
+	}
+	else
+	{
+		lcd_write(lcd, command, LCD_BYTE);
+	}
+
+}
+
+/**
+ * Write a byte to the data register
+ */
+void lcd_write_data(Lcd_HandleTypeDef * lcd, uint8_t data)
+{
+	HAL_GPIO_WritePin(lcd->rs_port, lcd->rs_pin, LCD_DATA_REG);			// Write to data register
+
+	if(lcd->mode == LCD_4_BIT_MODE)
+	{
+		lcd_write(lcd, data >> 4, LCD_NIB);
+		lcd_write(lcd, data & 0x0F, LCD_NIB);
+	}
+	else
+	{
+		lcd_write(lcd, data, LCD_BYTE);
+	}
+
+}
+
+/**
+ * Set len bits on the bus and toggle the enable line
+ */
+void lcd_write(Lcd_HandleTypeDef * lcd, uint8_t data, uint8_t len)
+{
+	for(uint8_t i = 0; i < len; i++)
+	{
+		HAL_GPIO_WritePin(lcd->data_port[i], lcd->data_pin[i], (data >> i) & 0x01);
+	}
+
+	HAL_GPIO_WritePin(lcd->en_port, lcd->en_pin, 1);
+	DELAY(1);
+	HAL_GPIO_WritePin(lcd->en_port, lcd->en_pin, 0);
+}
 
 
 ## Output screen shots of proteus  :
  
- 
+ ![376899886-91a5d9c8-f2f8-4503-a4a7-e688adb8bdbf](https://github.com/user-attachments/assets/a0ed0804-6a91-4ee5-9782-c69ced987e64)
+
  ## CIRCUIT DIAGRAM (EXPORT THE GRAPHICS TO PDF AND ADD THE SCREEN SHOT HERE): 
  
- 
+ ![376899919-96ce421c-8c98-4d07-b33c-9b4ba3b1ea03](https://github.com/user-attachments/assets/051bcbe5-fce3-4b3e-999f-65ecaca5e5dc)
+
 ## Result :
 Interfacing a 4x4 keypad with ARM microcontroller are simulated in proteus and the results are verified.
